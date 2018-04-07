@@ -1,9 +1,13 @@
 import React from 'react';
 import { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { fetchWeather } from '../actions/index';
 
 // This will be a Controlled Component, thats means
 // the data on an HTML form is tight to the Component State
-export default class SearchBar extends Component  {
+// This Component will be a Container
+class SearchBar extends Component  {
 
   constructor(props) {
       super(props);
@@ -18,6 +22,7 @@ export default class SearchBar extends Component  {
       // the instance 'this' inside this and assigne is to the oroginal
       // function
       this.onInputChange = this.onInputChange.bind(this);
+      this.onSubmitForm = this.onSubmitForm.bind(this);
   }
 
   render() {
@@ -42,7 +47,22 @@ export default class SearchBar extends Component  {
   }
 
   onSubmitForm(event) {
+
+    // prevent the automatic Form submition
     event.preventDefault();
+
+    // call the Acction Creator available on Props
+    this.props.fetchWeather(this.state.term);
+    this.setState( {term: ''} );
   }
 
 }
+
+
+// Hook up the ActionCreator into this Conntainer
+// This make sure that the Action flows by the Middleware and Reducers
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators( { fetchWeather }, dispatch);
+}
+
+export default connect(null, mapDispatchToProps) (SearchBar);
