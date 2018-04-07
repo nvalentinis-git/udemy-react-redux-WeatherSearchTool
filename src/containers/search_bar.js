@@ -2,7 +2,7 @@ import React from 'react';
 import { Component } from 'react';
 
 // This will be a Controlled Component, thats means
-// the data to be render is tight to the Component State
+// the data on an HTML form is tight to the Component State
 export default class SearchBar extends Component  {
 
   constructor(props) {
@@ -22,7 +22,7 @@ export default class SearchBar extends Component  {
 
   render() {
     return (
-      <form className="input-group">
+      <form onSubmit={this.onSubmitForm} className="input-group">
         <input
           placeholder="Get a five-day forecaste in your facorit city"
           className="form-control"
@@ -40,4 +40,9 @@ export default class SearchBar extends Component  {
   onInputChange(event) {
     this.setState( {term: event.target.value} );
   }
+
+  onSubmitForm(event) {
+    event.preventDefault();
+  }
+
 }
