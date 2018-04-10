@@ -47,7 +47,6 @@ class SearchBar extends Component  {
   }
 
   onSubmitForm(event) {
-
     // prevent the automatic Form submition
     event.preventDefault();
 

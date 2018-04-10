@@ -12,7 +12,7 @@ export default function(state = [], action) {
       // concat method do not mutate the original object
       //    it create a new object
       // return [ action.payload.data, ...state ] -> ES6
-      retrun state.concat( [ action.payload.data ] );
+      return state.concat( [ action.payload.data ] );
     }
   }
 
