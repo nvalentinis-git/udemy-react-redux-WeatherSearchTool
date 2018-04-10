@@ -9,6 +9,7 @@ const ROOT_UR = `http://api.openweathermap.org/data/2.5/forecast?appid=${API_KEY
 
 export const FETCH_WEATHER = 'FETCH_WEATHER';
 
+// This is the Action Creator fetchWeather
 export function fetchWeather(city) {
   const url = `${ROOT_UR}&q=${city},us`;
   const request = axios.get(url);
